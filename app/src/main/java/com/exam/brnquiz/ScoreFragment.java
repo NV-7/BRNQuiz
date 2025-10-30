@@ -6,6 +6,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -30,6 +31,8 @@ public class ScoreFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        BRNViewModel viewModel = new ViewModelProvider(this).get(BRNViewModel.class);
 
         TextView scoreValueTextView = view.findViewById(R.id.score_value);
         TextView scoreNumTextView = view.findViewById(R.id.score_number);

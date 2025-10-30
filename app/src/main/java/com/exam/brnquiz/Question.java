@@ -1,5 +1,8 @@
 package com.exam.brnquiz;
 
+import androidx.lifecycle.LifecycleOwner;
+import androidx.lifecycle.Observer;
+
 import java.util.ArrayList;
 
 public class Question {
@@ -11,5 +14,9 @@ public class Question {
         this.question = q;
         this.answerChoices = a;
         this.correctAnswer = c;
+    }
+
+    public void observe(LifecycleOwner viewLifecycleOwner, Observer<Question> observer) {
+        observer.onChanged(this);
     }
 }

@@ -7,6 +7,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.view.LayoutInflater;
@@ -72,9 +73,9 @@ public class QuestionFragment extends Fragment {
         ans1.add("Paris");
         ans1.add("Begota");
 
-        Question q1 = new Question("What is the capital of Colombia", ans1, 3);
-        questionTextView.setText(q1.question);
-        correct = q1.correctAnswer;
+        final Question[] q1 = {new Question("What is the capital of Colombia", ans1, 3)};
+        questionTextView.setText(q1[0].question);
+        correct = q1[0].correctAnswer;
 
         answersList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
@@ -85,7 +86,7 @@ public class QuestionFragment extends Fragment {
         });
 
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, q1.answerChoices);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, q1[0].answerChoices);
         answersList.setAdapter(adapter);
 
         submitButton.setOnClickListener(new View.OnClickListener() {
@@ -104,8 +105,14 @@ public class QuestionFragment extends Fragment {
             }
         });
 
-
-
+        viewModel.getQuestion().observe(getViewLifecycleOwner(), new Observer<Question>() {
+            @Override
+            public void onChanged(Question question) {
+            q1[0] = question;
+                questionTextView.setText(q1[0].question);
+                correct = q1[0].correctAnswer;
+            }
+        });
 
 
     }

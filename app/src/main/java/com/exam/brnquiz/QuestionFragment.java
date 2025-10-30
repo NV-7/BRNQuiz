@@ -63,7 +63,8 @@ public class QuestionFragment extends Fragment {
         Button submitButton = view.findViewById(R.id.submitButton);
         ListView answersList = view.findViewById(R.id.answersList);
 
-        BRNViewModel viewModel = new ViewModelProvider(this).get(BRNViewModel.class);
+       // BRNViewModel viewModel = new ViewModelProvider(this).get(BRNViewModel.class);
+
 
 
 
@@ -105,14 +106,14 @@ public class QuestionFragment extends Fragment {
             }
         });
 
-        viewModel.getQuestion().observe(getViewLifecycleOwner(), new Observer<Question>() {
-            @Override
-            public void onChanged(Question question) {
-            q1[0] = question;
-                questionTextView.setText(q1[0].question);
-                correct = q1[0].correctAnswer;
-            }
-        });
+//        viewModel.getQuestion().observe(getViewLifecycleOwner(), new Observer<Question>() {
+//            @Override
+//            public void onChanged(Question question) {
+//            q1[0] = question;
+//                questionTextView.setText(q1[0].question);
+//                correct = q1[0].correctAnswer;
+//            }
+//        });
 
 
     }
